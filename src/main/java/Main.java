@@ -1,11 +1,17 @@
 public class Main {
     public static void main(String[] args) {
-        Car car1 = new Car("right");
-        Car car2 = new Car("left");
+        int carsCount = 5;
 
-        Thread thread1 = new Thread(car1);
-        Thread thread2 = new Thread(car2);
-        thread1.start();
-        thread2.start();
+        Thread[] threads = new Thread[carsCount];
+        for (int i = 0; i < carsCount; i++) {
+            threads[i] = new Thread(new Car(
+                    (Math.random() < 0.5) ? "right" : "left"
+                )
+            );
+        }
+
+        for (int i = 0; i < carsCount; i++) {
+            threads[i].start();
+        }
     }
 }

@@ -13,7 +13,7 @@ public class Car implements Runnable {
         return position;
     }
 
-    private void changeRoute() {
+    private void changePosition() {
         position = (position.equals("right")) ? "left" : "right";
     }
 
@@ -22,11 +22,9 @@ public class Car implements Runnable {
         for (int i = 0; i < 2; i++) {
             Bridge.moveToTheBridge(this);
 
-            synchronized (Bridge.class) {
-                Bridge.moveOnTheBridge(this);
-                Bridge.moveOverTheBridge(this);
-                Bridge.moveFromTheBridge(this);
-            }
+            Bridge.moveOnTheBridge(this);
+            Bridge.moveOverTheBridge(this);
+            Bridge.moveFromTheBridge(this);
 
             Bridge.moveOffTheBridge(this);
 
@@ -37,7 +35,7 @@ public class Car implements Runnable {
                     ex.printStackTrace();
                 }
 
-                changeRoute();
+                changePosition();
             }
         }
     }
